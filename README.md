@@ -1,2 +1,7 @@
-# ionic-react-cms
-Build Cross-Platform Apps in Ionic React Content Management System (CMS)
+# Ionic React CMS
+## Build Cross-Platform Desktop / Mobile / Website Apps in Ionic ReactJS Content Management System (CMS)
+
+
+#Project History
+## NPM Updates
+### ...
