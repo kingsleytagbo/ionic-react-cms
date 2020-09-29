@@ -1,22 +1,33 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import * as React from 'react';
-import ExploreContainer from '../components/ExploreContainer';
+import React, { useState }  from 'react';
+import HomeContainer from '../components/HomeContainer';
 import PageFooter from '../components/PageFooter';
 import PageHeader from '../components/PageHeader';
 import './Home.css';
-
+// import Toast from '../components/utilities/Toast';
 
 const Home: React.FC = () => {
+  const [authenticated, setKey] = useState(false);
+  const handleLogin = (authenticated:boolean) => {
+    authenticated = true;
+    setKey(authenticated);
+    console.log({'login ...' : authenticated });
+  }
+  const handleLogout = (authenticated:boolean) => {
+    authenticated = false;
+    setKey(authenticated);
+    console.log({'logout ...' : authenticated });
+  }
   return (
     <IonPage>
-      <PageHeader authenticated={false}> </PageHeader>
+      <PageHeader authenticated={authenticated}  handleLogout={handleLogout} handleLogin={handleLogin}> </PageHeader>
       <IonContent fullscreen color="medium">
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">React CMS</IonTitle>
+            <IonTitle size="large" className="ion-text-center">React CMS</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <ExploreContainer />
+        <HomeContainer />
       </IonContent>
       <PageFooter></PageFooter>
     </IonPage>

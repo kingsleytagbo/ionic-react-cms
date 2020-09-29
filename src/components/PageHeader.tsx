@@ -1,15 +1,18 @@
 import React from 'react';
 import { IonHeader, IonTitle, IonToolbar, IonButtons, IonButton, IonIcon } from '@ionic/react';
-import './ExploreContainer.css';
 
 interface ContainerProps { authenticated:string }
 type props = {
     authenticated: boolean;
+    handleLogin: any;
+    handleLogout: any;
   }
 const PageHeader: React.FC<props> = ({ ...props }) => {
-    const authenticated = props.authenticated;
+    let authenticated = props.authenticated;
+    let handleLogin = props.handleLogin;
+    let handleLogout = props.handleLogout;
   return (
-<IonHeader>
+<IonHeader className="ion-text-center">
 <IonToolbar>
     <IonTitle>
             <IonIcon name="beer-sharp"></IonIcon>
@@ -17,13 +20,13 @@ const PageHeader: React.FC<props> = ({ ...props }) => {
     </IonTitle>
     <IonButtons slot="primary">
         {authenticated &&
-                      <IonButton>
+                      <IonButton onClick={handleLogout}>
                           <IonIcon slot="start" name="lock-closed"></IonIcon>
                           <span>Logout </span>
                       </IonButton>
                   }
-        {!    authenticated &&
-        <IonButton>
+        {!authenticated &&
+        <IonButton onClick={handleLogin}>
             <IonIcon slot="start" name="log-out"></IonIcon>
             <span>Login</span>
         </IonButton>
