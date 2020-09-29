@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonToast } from '@ionic/react';
 import React, { useState }  from 'react';
 import HomeContainer from '../components/HomeContainer';
 import PageFooter from '../components/PageFooter';
@@ -11,6 +11,7 @@ const Home: React.FC = () => {
   const handleLogin = (authenticated:boolean) => {
     authenticated = true;
     setKey(authenticated);
+    setShowToast1(true);
     console.log({'login ...' : authenticated });
   }
   const handleLogout = (authenticated:boolean) => {
@@ -18,6 +19,8 @@ const Home: React.FC = () => {
     setKey(authenticated);
     console.log({'logout ...' : authenticated });
   }
+
+  const [showToast1, setShowToast1] = useState(false);
   
   return (
     <IonPage>
@@ -29,6 +32,14 @@ const Home: React.FC = () => {
             <IonTitle size="large" className="ion-text-center">React CMS</IonTitle>
           </IonToolbar>
         </IonHeader>
+
+        <IonToast
+        isOpen={showToast1}
+        position = 'top'
+        onDidDismiss={() => setShowToast1(false)}
+        message="Login is not implemented."
+        duration={6000}
+      />
 {
   /*
         <Toast toastList={[{id: 1,title: 'Success',description: 'This is a success toast component',backgroundColor: '#5cb85c',icon: null}]} position="bottom-right" />
