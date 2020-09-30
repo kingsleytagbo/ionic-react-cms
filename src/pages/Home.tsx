@@ -11,7 +11,7 @@ const Home: React.FC = () => {
   const handleLogin = (authenticated:boolean) => {
     authenticated = true;
     setKey(authenticated);
-    setShowToast1(true);
+    showToast(true);
     console.log({'login ...' : authenticated });
   }
   const handleLogout = (authenticated:boolean) => {
@@ -20,7 +20,7 @@ const Home: React.FC = () => {
     console.log({'logout ...' : authenticated });
   }
 
-  const [showToast1, setShowToast1] = useState(false);
+  const [openToast, showToast] = useState(false);
   
   return (
     <IonPage>
@@ -34,9 +34,9 @@ const Home: React.FC = () => {
         </IonHeader>
 
         <Toast
-        isOpen={showToast1}
-
-        onDidDismiss={() => setShowToast1(false)}
+        isOpen={openToast}
+        position = 'top'
+        onDidDismiss={() => showToast(false)}
         message="Login is not implemented."
         duration={6000}
       />
