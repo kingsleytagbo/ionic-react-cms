@@ -1,4 +1,8 @@
 
+/**
+ * Title:  Custom, reusable Toast message component
+ * Author: Kingsley Tagbo / https://github.com/kingsleytagbo
+ */
 import React  from 'react';
 import { IonToast } from '@ionic/react';
 
