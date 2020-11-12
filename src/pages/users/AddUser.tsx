@@ -1,8 +1,8 @@
 import React, {useState, useEffect}  from 'react';
 import { useHistory } from 'react-router-dom';
-import {IonPage, IonContent, IonItemDivider,
+import {IonPage, IonHeader, IonTitle, IonContent, IonItemDivider,
   IonList, IonItem, IonLabel, 
-  IonCard, IonCardHeader, IonCardTitle, IonCardContent,
+  IonCard, IonCardHeader, IonToolbar, IonCardTitle, IonCardContent,
   IonInput, IonButton, IonText, IonIcon, IonRow, IonCol
 } from '@ionic/react';
 import PageFooter from '../../components/PageFooter';
@@ -61,8 +61,15 @@ const AddUserPage: React.FC = () => {
       <PageHeader authenticated={false}  handleLogout={(null)} > </PageHeader>
       <IonContent fullscreen color="medium">
 
+      <IonHeader collapse="condense">
+          <IonToolbar>
+            <IonTitle size="large" className="ion-text-center">React UI Dev Kit</IonTitle>
+          </IonToolbar>
+        </IonHeader>
+
+        <IonItemDivider><IonLabel className="ion-text-center">Add User</IonLabel></IonItemDivider>
+
           <IonList>
-            <IonItemDivider><IonLabel className="ion-text-center">Add User</IonLabel></IonItemDivider>
             <IonRow>
                 <IonCol size-xs="12" class="padding page-content">
                   <div>
