@@ -1,12 +1,12 @@
 import React, {useState, useEffect}  from 'react';
 import { IonContent, IonPage, 
 IonIcon, IonList, IonItemDivider, IonLabel, IonItem, IonCheckbox } from '@ionic/react';
-import PageFooter from '../components/PageFooter';
-import PageHeader from '../components/PageHeader';
-import  User  from '../models/User';
-import { getUsers } from '../services/Http';
+import PageFooter from '../../components/PageFooter';
+import PageHeader from '../../components/PageHeader';
+import  User  from '../../models/User';
+import { getUsers } from '../../services/Http';
 
-const Users: React.FC = () => {
+const UsersHome: React.FC = () => {
   const [users, setUsers] = useState(Array<User>());
   const loadUsers = async () => {
     let users = await getUsers() || Array<User>();
@@ -41,6 +41,6 @@ const Users: React.FC = () => {
   );
 };
 
-export default Users;
+export default UsersHome;
 
 
