@@ -1,5 +1,5 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import React, { useState }  from 'react';
+import React  from 'react';
 import LoginLayout from '../components/LoginLayout';
 import PageFooter from '../components/PageFooter';
 import PageHeader from '../components/PageHeader';
@@ -15,7 +15,7 @@ const Login: React.FC = () => {
       <IonContent fullscreen color="medium">
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large" className="ion-text-center">React CMS</IonTitle>
+            <IonTitle size="large" className="ion-text-center">React UI Dev Kit</IonTitle>
           </IonToolbar>
         </IonHeader>
 

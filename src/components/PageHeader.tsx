@@ -12,21 +12,25 @@ const PageHeader: React.FC<props> = ({ ...props }) => {
     // const authenticated = props.authenticated;
     // const handleLogout = props.handleLogout;
     const [authenticated, setKey] = useState(false);
-    /*
-    const handleLogin = (authenticated:boolean) => {
-      authenticated = true;
-      setKey(authenticated);
-      // showToast(true);
-      console.log({'login ...' : authenticated });
+    const [openToast, showToast] = useState(false); 
+
+    const createToast = (message:string) => {
+        return (
+            <Toast
+                isOpen={openToast}
+                position='top'
+                onDidDismiss={() => showToast(false)}
+                message={message}
+                duration={6000}
+            />);
     }
-    */
+
     const handleLogout = () => {
       const authenticated = false;
       setKey(authenticated);
       console.log({'logout ...' : authenticated });
     }
   
-    const [openToast, showToast] = useState(false);
 
     const history = useHistory();
     const navigateLogin = () =>{ 
@@ -40,7 +44,7 @@ const PageHeader: React.FC<props> = ({ ...props }) => {
 <IonToolbar>
     <IonTitle>
             <IonIcon name="beer-sharp"></IonIcon>
-           React LMS 
+            React UI Dev Kit
     </IonTitle>
     <IonButtons slot="primary">
     

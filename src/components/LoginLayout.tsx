@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import {
-  IonList, IonItem, IonLabel, IonItemDivider,
+  IonList, IonItem, IonLabel, 
   IonCard, IonCardHeader, IonCardTitle, IonCardContent,
   IonInput, IonButton, IonText, IonIcon, IonRow, IonCol
 } from '@ionic/react';
@@ -39,18 +39,18 @@ const LoginLayout: React.FC<ContainerProps> = () => {
   }
 
   const navigateLogin = () => {
-    const path = `login`;
-    // history.push(path);
+    const path = `home`;
     const response = login(values.username, values.password);
     response.then((result) => {
       if(result.authenticated){
         console.log({ "Login Result": result.auth_token });
+        history.push(path);
       }
     })
     .catch((err) => console.log('Login Error:', err.message));
   }
   const navigateSignup = () => {
-    const path = `regisester`;
+    //const path = `regisster`;
     //history.push(path);
     console.log({ 'register button clicked.': values });
   }

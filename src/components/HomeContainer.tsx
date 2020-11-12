@@ -1,4 +1,4 @@
-import React, { useState }  from 'react';
+import React  from 'react';
 import { IonCheckbox, IonList, IonItem, IonLabel, IonItemDivider, IonIcon } from '@ionic/react';
 import './HomeContainer.css';
 
@@ -16,8 +16,6 @@ const features = [
 ];
 
 const HomeContainer: React.FC<ContainerProps> = () => {
-
-  const [checked, setChecked] = useState(false);
 
   return (
     <div className="container">
