@@ -39,7 +39,7 @@ const LoginLayout: React.FC<ContainerProps> = () => {
   }
 
   const navigateLogin = () => {
-    const path = `home`;
+    const path = 'users';
     const response = login(values.username, values.password);
     response.then((result) => {
       if(result.authenticated){

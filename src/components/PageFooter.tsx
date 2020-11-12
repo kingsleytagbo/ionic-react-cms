@@ -11,7 +11,7 @@ const PageFooter: React.FC<ContainerProps> = () => {
                   <IonCol className="ion-text-center">
                       <button>
                           <IonIcon name="eye-off-outline"></IonIcon>
-                          <div>React: 16.13.1</div>
+                          <div>React: UI Dev. Kit</div>
                       </button>
 
                       <button>

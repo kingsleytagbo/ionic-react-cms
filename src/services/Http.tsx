@@ -22,7 +22,10 @@ export const login = (username: string, password: string, useApi: boolean = true
 };
 
 export const getUsers = (useApi: boolean = true) => {
-  // console.log({'Login': {email: email, password:password, useApi: useApi}});
+  const headers = {
+    Accept: 'application/json',
+    'Content-Type': 'application/json; charset=utf-8',
+  };
   if (useApi) {
     const body = {};
     return post('/users/getUsers', body);
@@ -95,7 +98,7 @@ export const getAuthenticatedUsers = (shouldSucceed = true) => {
 export const post = async (destination:string, body:any) => {
   const headers = {
     Accept: 'application/json',
-    'Content-Type': 'application/json; charset=utf-8',
+    'Content-Type': 'text/plain',
   };
   const result = await fetch(`${API_URL}${destination}`, {
     method: 'POST',
