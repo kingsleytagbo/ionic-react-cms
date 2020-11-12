@@ -6,6 +6,7 @@ import {
   IonInput, IonButton, IonText, IonIcon, IonRow, IonCol
 } from '@ionic/react';
 import './HomeContainer.css';
+import { login } from '../services/Http';
 
 interface ContainerProps { }
 
@@ -40,7 +41,13 @@ const LoginLayout: React.FC<ContainerProps> = () => {
   const navigateLogin = () => {
     const path = `login`;
     // history.push(path);
-    // console.log({ 'login button clicked.': values });
+    const response = login(values.username, values.password);
+    response.then((result) => {
+      if(result.authenticated){
+        console.log({ "Login Result": result.auth_token });
+      }
+    })
+    .catch((err) => console.log('Login Error:', err.message));
   }
   const navigateSignup = () => {
     const path = `regisester`;
