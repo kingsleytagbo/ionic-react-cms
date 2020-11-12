@@ -87,11 +87,11 @@ const LoginLayout: React.FC<ContainerProps> = () => {
                         </IonInput>
                       </IonItem>
 
-                      {(!validation.username) && (<IonText color="danger">
-                        <div className="ion-padding-start">
+                      <IonText color="danger">
+                        <div className="ion-padding-start" style={{visibility: validation.username ? 'hidden' : 'visible' }}>
                           Username is required
                     </div>
-                      </IonText>)}
+                      </IonText>
 
                       <IonItem>
                         <IonLabel position="stacked" color="primary">Password</IonLabel>
@@ -103,13 +103,12 @@ const LoginLayout: React.FC<ContainerProps> = () => {
                         </IonInput>
                       </IonItem>
 
-                      {(!validation.password) && (
                         <IonText color="danger">
-                          <div className="ion-padding-start">
+                          <div className="ion-padding-start"  style={{visibility: validation.password ? 'hidden' : 'visible' }}>
                             Password is required
                     </div>
                         </IonText>
-                      )}
+            
                     </IonList>
 
                     <IonRow>
