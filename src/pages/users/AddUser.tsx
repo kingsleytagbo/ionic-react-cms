@@ -8,7 +8,7 @@ import {IonPage, IonHeader, IonTitle, IonContent, IonItemDivider,
 import PageFooter from '../../components/PageFooter';
 import PageHeader from '../../components/PageHeader';
 import  User  from '../../models/User';
-import { login, getUsers } from '../../services/Http';
+import { createUser } from '../../services/Http';
 
 const AddUserPage: React.FC = () => {
   const history = useHistory();
@@ -38,23 +38,32 @@ const AddUserPage: React.FC = () => {
     // console.log({ name: name, value: value, validation: validation });
   }
 
-  const navigateLogin = () => {
-    const path = 'users';
-    const response = login(values.username, values.password);
-    response.then((result) => {
-      if(result.authenticated){
-        console.log({ "Login Result": result.auth_token });
-        history.push(path);
-      }
+  const navigateSave = () => {
+    const path = '/users';
+   const user ={ 
+     user_login:values.username, user_pass:values.password, 
+    user_nicename:values.username,user_email:values.username,
+    display_name:values.username,
+    user_status:1,user_registered:1,user_url:'',user_activation_key:'',spam:0,
+    deleted:0,site_id:1};
+
+    const response = createUser(user, true);
+    response.then((result:any) => {
+      console.log({ "CreateUser Result": result });
+      history.push({
+        pathname: path,
+        state: { user: values }
+      })
     })
-    .catch((err) => console.log('Login Error:', err.message));
-  }
-  const navigateSignup = () => {
-    //const path = `regisster`;
-    //history.push(path);
-    console.log({ 'register button clicked.': values });
+      .catch((err:any) => console.log('CreateUser Error:', err.message));
+      
   }
 
+  const navigateCancel = () => {
+    const path = `/users`;
+    history.push(path);
+    //console.log({ 'register button clicked.': values });
+  }
   return (
     <IonPage>
 
@@ -111,11 +120,11 @@ const AddUserPage: React.FC = () => {
 
                     <IonRow>
                       <IonCol>
-                        <IonButton type="submit" expand="block" onClick={navigateLogin}
+                        <IonButton type="submit" expand="block" onClick={navigateSave}
                         disabled={!validation.username || !validation.password}>Save</IonButton>
                       </IonCol>
                       <IonCol>
-                        <IonButton color="light" expand="block" onClick={navigateSignup}>Cancel</IonButton>
+                        <IonButton color="light" expand="block" onClick={navigateCancel}>Cancel</IonButton>
                       </IonCol>
                     </IonRow>
                   </div>

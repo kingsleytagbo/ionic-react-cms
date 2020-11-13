@@ -1,6 +1,6 @@
 import React, {useState, useEffect}  from 'react';
 import { useHistory } from 'react-router-dom';
-import { IonContent, IonPage, 
+import { IonContent, IonPage, IonRow, IonCol, IonButton,
 IonIcon, IonList, IonItemDivider, IonLabel, IonItem, IonCheckbox } from '@ionic/react';
 import PageFooter from '../../components/PageFooter';
 import PageHeader from '../../components/PageHeader';
@@ -31,6 +31,14 @@ const UsersHome: React.FC = () => {
     console.log({name: name, value: user});
   }
 
+  const navigateAddUser = () => {
+    const path = '/users/adduser';
+    history.push({
+      pathname: path,
+      state: { user: {} }
+    });
+  }
+
   return (
     <IonPage>
 
@@ -39,6 +47,13 @@ const UsersHome: React.FC = () => {
 
           <IonList>
             <IonItemDivider><IonLabel className="ion-text-center">User Admin</IonLabel></IonItemDivider>
+
+          <IonRow>
+            <IonCol size="12">
+              <IonButton expand="block" color="secondary" onClick={navigateAddUser}>Add User</IonButton>
+            </IonCol>
+          </IonRow>
+
             {users.map(( user:User, i) => (
               <IonItem key={i}>
                 <IonLabel>id:{user.id} / {user.user_nicename}</IonLabel>

@@ -8,7 +8,7 @@ import {IonPage, IonHeader, IonTitle, IonContent, IonItemDivider,
 import PageFooter from '../../components/PageFooter';
 import PageHeader from '../../components/PageHeader';
 import  User  from '../../models/User';
-import { login, getUsers } from '../../services/Http';
+import { updateUser } from '../../services/Http';
 
 const EditUserPage: React.FC = () => {
   const history = useHistory();
@@ -41,16 +41,18 @@ const EditUserPage: React.FC = () => {
   }
 
   const navigateLogin = () => {
-    const path = 'users';
-    const response = login(values.user_nicename, values.user_pass);
+    const path = '/users';
+    const response = updateUser(values, true);
     response.then((result) => {
-      if(result.authenticated){
-        console.log({ "Login Result": result.auth_token });
-        history.push(path);
-      }
+      // console.log({ "UpdateUser Result": result });
+      history.push({
+        pathname: path,
+        state: { user: values }
+      })
     })
-    .catch((err) => console.log('Login Error:', err.message));
+      .catch((err) => console.log('UpdateUser Error:', err.message));
   }
+
   const navigateCancel = () => {
     const path = `/users`;
     history.push(path);

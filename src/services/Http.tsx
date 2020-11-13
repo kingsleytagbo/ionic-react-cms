@@ -22,10 +22,6 @@ export const login = (username: string, password: string, useApi: boolean = true
 };
 
 export const getUsers = (useApi: boolean = true) => {
-  const headers = {
-    Accept: 'application/json',
-    'Content-Type': 'application/json; charset=utf-8',
-  };
   if (useApi) {
     const body = {};
     return post('/users/getUsers', body);
@@ -35,28 +31,19 @@ export const getUsers = (useApi: boolean = true) => {
   }
 };
 
-export const createUser = (email:string, password:string, useApi:boolean = true) => {
-    // console.log({'Login': {email: email, password:password, useApi: useApi}});
-    if (useApi) {
-      if ((email && email !== '') && (password && password !== '')) {
-        const body = {
-          "user": {
-            user_login:email, user_pass:password, user_nicename:password,user_email:email,display_name:email,
-              user_status:1,user_registered:1,user_url:'',user_activation_key:'',spam:0,
-              deleted:0,site_id:1
-          }
-        };
-        return post('/users/createUser', body);
-        //return mockSuccess({ auth_token: 'Login Api - Success!' });
-      }
-      else {
-        return mockFailure({ error: 500, message: 'Login Api - Failure' });
-      }
-    }
-    else{
-      return mockFailure({ error: 500, message: 'Login - Failure' });
-    }
-  };
+export const createUser = (user: any, useApi: boolean = true) => {
+  // console.log({'Login': {email: email, password:password, useApi: useApi}});
+  if (useApi) {
+    const body = {
+      "user": user
+    };
+    return post('/users/createUser', body);
+    //return mockSuccess({ auth_token: 'Login Api - Success!' });
+  }
+  else {
+    return mockFailure({ error: 500, message: 'Login - Failure' });
+  }
+};
 
 export const updateUser = (user: User, useApi: boolean = true) => {
   console.log({'updateUser': user, useApi: useApi});
