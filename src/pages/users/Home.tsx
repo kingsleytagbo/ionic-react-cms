@@ -19,7 +19,7 @@ const UsersHome: React.FC = () => {
   useEffect(() => {
     console.log({ "useEffect": loadUsers })
     loadUsers();
-  }, []);
+  }, [history.location.state]);
 
   const handleInputChange = (e: any) => {
     const { name, value } = e.target;
