@@ -40,7 +40,7 @@ const EditUserPage: React.FC = () => {
     // console.log({ name: name, value: value, validation: validation });
   }
 
-  const navigateLogin = () => {
+  const navigateSave = () => {
     const path = '/users';
     const response = updateUser(values, true);
     response.then((result) => {
@@ -123,11 +123,12 @@ const EditUserPage: React.FC = () => {
 
                     <IonRow>
                       <IonCol>
-                        <IonButton type="submit" expand="block" onClick={navigateLogin}
+                        <IonButton type="submit" expand="block" color="secondary" size="small"
+                         onClick={navigateSave}
                         disabled={!validation.user_nicename || !validation.user_pass}>Save</IonButton>
                       </IonCol>
                       <IonCol>
-                        <IonButton color="light" expand="block" onClick={navigateCancel}>Cancel</IonButton>
+                        <IonButton color="light" expand="block" size="small" onClick={navigateCancel}>Cancel</IonButton>
                       </IonCol>
                     </IonRow>
                   </div>

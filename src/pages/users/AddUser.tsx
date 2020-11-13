@@ -120,11 +120,12 @@ const AddUserPage: React.FC = () => {
 
                     <IonRow>
                       <IonCol>
-                        <IonButton type="submit" expand="block" onClick={navigateSave}
+                        <IonButton type="submit" expand="block" color="secondary" size="small"
+                        onClick={navigateSave}
                         disabled={!validation.username || !validation.password}>Save</IonButton>
                       </IonCol>
                       <IonCol>
-                        <IonButton color="light" expand="block" onClick={navigateCancel}>Cancel</IonButton>
+                        <IonButton color="light" expand="block" size="small" onClick={navigateCancel}>Cancel</IonButton>
                       </IonCol>
                     </IonRow>
                   </div>

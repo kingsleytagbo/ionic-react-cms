@@ -56,7 +56,7 @@ const UsersHome: React.FC = () => {
         <IonList>
           <IonRow>
             <IonCol size="12">
-              <IonButton expand="block" color="secondary" onClick={navigateAddUser}>Add User</IonButton>
+              <IonButton expand="block" color="secondary" size="small" onClick={navigateAddUser}>Add User</IonButton>
             </IonCol>
           </IonRow>
 
