@@ -1,5 +1,6 @@
 class User{
-    public readonly user_nicename:string;
+    public id:string = '';
+    public user_nicename:string;
     public  user_pass:string;
 
     constructor(username: string, password:string){

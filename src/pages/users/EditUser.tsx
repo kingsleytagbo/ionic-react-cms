@@ -1,5 +1,5 @@
 import React, {useState, useEffect}  from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import {IonPage, IonHeader, IonTitle, IonContent, IonItemDivider,
   IonList, IonItem, IonLabel, 
   IonCard, IonCardHeader, IonToolbar, IonCardTitle, IonCardContent,
@@ -12,35 +12,37 @@ import { login, getUsers } from '../../services/Http';
 
 const EditUserPage: React.FC = () => {
   const history = useHistory();
-  const [values, setValues] = useState({ username: '', password: '' });
-  const [validation, setValidation] = useState({ username: false, password: false });
+  const location = useLocation();
+
+  const [values, setValues] = useState(new User('',''));
+  const [validation, setValidation] = useState({ user_nicename: false, user_pass: false });
 
   const handleInputChange = (e: any) => {
     const { name, value } = e.target
-    let validUsername = false;
-    let validPassword = false;
+    let validuser_nicename = false;
+    let validuser_pass = false;
 
-    if (values.username && values.username.length > 0) {
-      validUsername = true;
+    if (values.user_nicename && values.user_nicename.length > 0) {
+      validuser_nicename = true;
     }
     else {
-      validUsername = false;
+      validuser_nicename = false;
     }
-    if (values.password && values.password.length > 0) {
-      validPassword = true;
+    if (values.user_pass && values.user_pass.length > 0) {
+      validuser_pass = true;
     }
     else {
-      validPassword = false;
+      validuser_pass = false;
     }
 
     setValues({ ...values, [name]: value });
-    setValidation({ ...validation, 'username': validUsername, 'password': validPassword });
+    setValidation({ ...validation, 'user_nicename': validuser_nicename, 'user_pass': validuser_pass });
     // console.log({ name: name, value: value, validation: validation });
   }
 
   const navigateLogin = () => {
     const path = 'users';
-    const response = login(values.username, values.password);
+    const response = login(values.user_nicename, values.user_pass);
     response.then((result) => {
       if(result.authenticated){
         console.log({ "Login Result": result.auth_token });
@@ -49,11 +51,19 @@ const EditUserPage: React.FC = () => {
     })
     .catch((err) => console.log('Login Error:', err.message));
   }
-  const navigateSignup = () => {
-    //const path = `regisster`;
-    //history.push(path);
-    console.log({ 'register button clicked.': values });
+  const navigateCancel = () => {
+    const path = `/users`;
+    history.push(path);
+    //console.log({ 'register button clicked.': values });
   }
+
+  useEffect(() => {
+    const state:any = location.state;
+    if(state && state.user){
+    const user = state.user;
+    setValues(user);
+    }
+ }, [location]);
 
   return (
     <IonPage>
@@ -63,7 +73,7 @@ const EditUserPage: React.FC = () => {
 
       <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large" className="ion-text-center">React UI Dev Kit</IonTitle>
+            <IonTitle size="small" className="ion-text-center">React UI Dev Kit</IonTitle>
           </IonToolbar>
         </IonHeader>
 
@@ -76,34 +86,34 @@ const EditUserPage: React.FC = () => {
                     <IonList>
                       <IonItem>
                         <IonLabel position="stacked" color="primary">Username</IonLabel>
-                        <IonInput required name="username" type="text"
+                        <IonInput required name="user_nicename" type="text"
                           autocapitalize="off"
-                          placeholder="*username is required"
+                          placeholder="Enter your Username"
                           onIonChange={handleInputChange}
-                          value={values.username}
+                          value={values.user_nicename}
                         >
                         </IonInput>
                       </IonItem>
 
                       <IonText color="danger">
-                        <div className="ion-padding-start" style={{visibility: validation.username ? 'hidden' : 'visible' }}>
-                          Username is required
+                        <div className="ion-padding-start" style={{visibility: validation.user_nicename ? 'hidden' : 'visible' }}>
+                          *Username is required
                     </div>
                       </IonText>
 
                       <IonItem>
                         <IonLabel position="stacked" color="primary">Password</IonLabel>
-                        <IonInput required name="password" type="password"
-                          placeholder="*password is required"
+                        <IonInput required name="user_pass" type="password"
+                          placeholder="Type your Password"
                           onIonChange={handleInputChange}
-                          value={values.password}
+                          value={values.user_pass}
                         >
                         </IonInput>
                       </IonItem>
 
                         <IonText color="danger">
-                          <div className="ion-padding-start"  style={{visibility: validation.password ? 'hidden' : 'visible' }}>
-                            Password is required
+                          <div className="ion-padding-start"  style={{visibility: validation.user_pass ? 'hidden' : 'visible' }}>
+                            *Password is required
                     </div>
                         </IonText>
             
@@ -112,10 +122,10 @@ const EditUserPage: React.FC = () => {
                     <IonRow>
                       <IonCol>
                         <IonButton type="submit" expand="block" onClick={navigateLogin}
-                        disabled={!validation.username || !validation.password}>Save</IonButton>
+                        disabled={!validation.user_nicename || !validation.user_pass}>Save</IonButton>
                       </IonCol>
                       <IonCol>
-                        <IonButton color="light" expand="block" onClick={navigateSignup}>Cancel</IonButton>
+                        <IonButton color="light" expand="block" onClick={navigateCancel}>Cancel</IonButton>
                       </IonCol>
                     </IonRow>
                   </div>

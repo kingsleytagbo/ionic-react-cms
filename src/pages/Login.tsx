@@ -18,7 +18,6 @@ const Login: React.FC = () => {
             <IonTitle size="large" className="ion-text-center">React UI Dev Kit</IonTitle>
           </IonToolbar>
         </IonHeader>
-
         <LoginLayout />
       </IonContent>
       <PageFooter></PageFooter>
