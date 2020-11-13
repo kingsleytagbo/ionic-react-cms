@@ -1,10 +1,12 @@
-import React, {useState, useEffect}  from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { IonContent, IonPage, IonRow, IonCol, IonButton,
-IonIcon, IonList, IonItemDivider, IonLabel, IonItem, IonCheckbox } from '@ionic/react';
+import {
+  IonContent, IonPage, IonHeader, IonToolbar, IonTitle, IonRow, IonCol, IonButton,
+  IonIcon, IonList, IonItemDivider, IonLabel, IonItem, IonCheckbox
+} from '@ionic/react';
 import PageFooter from '../../components/PageFooter';
 import PageHeader from '../../components/PageHeader';
-import  User  from '../../models/User';
+import User from '../../models/User';
 import { getUsers } from '../../services/Http';
 
 const UsersHome: React.FC = () => {
@@ -24,11 +26,11 @@ const UsersHome: React.FC = () => {
   const handleInputChange = (e: any) => {
     const { name, value } = e.target;
     const user = JSON.parse(value);
-    history.push({ 
+    history.push({
       pathname: '/users/edituser',
       state: { user: user }
-  })
-    console.log({name: name, value: user});
+    })
+    console.log({ name: name, value: user });
   }
 
   const navigateAddUser = () => {
@@ -42,26 +44,30 @@ const UsersHome: React.FC = () => {
   return (
     <IonPage>
 
-      <PageHeader authenticated={false}  handleLogout={(null)} > </PageHeader>
-      <IonContent fullscreen color="medium">
+      <PageHeader authenticated={false} handleLogout={(null)} > </PageHeader>
+      <IonContent fullscreen color="light">
 
-          <IonList>
-            <IonItemDivider><IonLabel className="ion-text-center">User Admin</IonLabel></IonItemDivider>
+        <IonHeader >
+          <IonToolbar>
+            <IonTitle className="ion-text-center">User Admin</IonTitle>
+          </IonToolbar>
+        </IonHeader>
 
+        <IonList>
           <IonRow>
             <IonCol size="12">
               <IonButton expand="block" color="secondary" onClick={navigateAddUser}>Add User</IonButton>
             </IonCol>
           </IonRow>
 
-            {users.map(( user:User, i) => (
-              <IonItem key={i}>
-                <IonLabel>id:{user.id} / {user.user_nicename}</IonLabel>
-                <IonCheckbox slot="start" value={JSON.stringify(user)} checked={false} 
+          {users.map((user: User, i) => (
+            <IonItem key={i}>
+              <IonLabel>id:{user.id} / {user.user_nicename}</IonLabel>
+              <IonCheckbox slot="start" value={JSON.stringify(user)} checked={false}
                 onIonChange={handleInputChange} />
-              </IonItem>
-            ))}
-          </IonList>
+            </IonItem>
+          ))}
+        </IonList>
 
       </IonContent>
       <PageFooter></PageFooter>
