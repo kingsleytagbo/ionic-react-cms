@@ -61,9 +61,10 @@ export const updateUser = (user: User, useApi: boolean = true) => {
 };
 
 
+/*
 const getAuthenticationToken = () => 'successful_fake_token';
 export const getAuthenticatedUsers = (shouldSucceed = true) => {
-  const token = getAuthenticationToken();
+  //const token = getAuthenticationToken();
 
   if (!shouldSucceed) {
     return mockFailure({ error: 401, message: 'Invalid Request' });
@@ -80,7 +81,7 @@ export const getAuthenticatedUsers = (shouldSucceed = true) => {
     ],
   });
 };
-
+*/
 
 export const post = async (destination:string, body:any) => {
   const headers = {
@@ -102,16 +103,16 @@ export const post = async (destination:string, body:any) => {
   throw new Error(result.statusText);
 };
 
-
-
-const mockSuccess = (value:any) => {
-  return new Promise((resolve) => {
-    setTimeout(() => resolve(value), 2000);
-  });
-};
-
 const mockFailure = (value:any) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => reject(value), 2000);
   });
 };
+
+/*
+const mockSuccess = (value:any) => {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve(value), 2000);
+  });
+};
+*/

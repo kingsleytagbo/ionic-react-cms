@@ -1,4 +1,4 @@
-import React, {useContext}  from 'react';
+import React  from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import LoginLayout from '../components/LoginLayout';
 import PageFooter from '../components/PageFooter';

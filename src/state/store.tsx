@@ -15,7 +15,7 @@ const { Provider } = store;
 const StateProvider = ( { children }:any ) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const value = { state, dispatch };
-  return <Provider value={{ state, dispatch }}>{children}</Provider>;
+  return <Provider value={value}>{children}</Provider>;
 };
 
 export { store, StateProvider }

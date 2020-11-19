@@ -77,7 +77,7 @@ const LoginLayout: React.FC<ContainerProps> = () => {
                 <IonRow>
                   <IonCol size-xs="12">
                     <h1 className="IonTextCapitalize IonTextCenter">
-                      <IonIcon name="apps"></IonIcon>
+                      <IonIcon icon="apps"></IonIcon>
                       {state.isAuth ? "Logout" : "Login"}
                 </h1>
                   </IonCol>

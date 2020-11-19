@@ -1,13 +1,13 @@
-import React, {useState, useEffect}  from 'react';
+import React, {useState}  from 'react';
 import { useHistory } from 'react-router-dom';
 import {IonPage, IonHeader, IonTitle, IonContent, IonItemDivider,
   IonList, IonItem, IonLabel, 
-  IonCard, IonCardHeader, IonToolbar, IonCardTitle, IonCardContent,
-  IonInput, IonButton, IonText, IonIcon, IonRow, IonCol
+   IonToolbar, 
+  IonInput, IonButton, IonText, IonRow, IonCol
 } from '@ionic/react';
 import PageFooter from '../../components/PageFooter';
 import PageHeader from '../../components/PageHeader';
-import  User  from '../../models/User';
+// import  User  from '../../models/User';
 import { createUser } from '../../services/Http';
 
 const AddUserPage: React.FC = () => {

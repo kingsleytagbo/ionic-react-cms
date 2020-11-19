@@ -20,7 +20,7 @@ const HomeContainer: React.FC<ContainerProps> = () => {
   return (
     <div className="container">
       <h1>Ionic + ReactJS LMS</h1>
-      <h3><IonIcon name="eye-off-outline"></IonIcon>DESKTOP + WEB + MOBILE APPS</h3>
+      <h3><IonIcon icon="eye-off-outline"></IonIcon>DESKTOP + WEB + MOBILE APPS</h3>
 
       <IonList>
       <IonItemDivider><IonLabel className="ion-text-center">Features</IonLabel></IonItemDivider>

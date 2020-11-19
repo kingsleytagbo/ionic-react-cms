@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import {
   IonContent, IonPage, IonHeader, IonToolbar, IonTitle, IonRow, IonCol, IonButton,
-  IonIcon, IonList, IonItemDivider, IonLabel, IonItem, IonCheckbox
+   IonList, IonLabel, IonItem, IonCheckbox
 } from '@ionic/react';
 import PageFooter from '../../components/PageFooter';
 import PageHeader from '../../components/PageHeader';
@@ -24,7 +24,7 @@ const UsersHome: React.FC = () => {
   }, [history.location.state]);
 
   const handleInputChange = (e: any) => {
-    const { name, value } = e.target;
+    const { value } = e.target;
     const user = JSON.parse(value);
     history.push({
       pathname: '/users/edituser',

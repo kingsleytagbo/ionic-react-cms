@@ -1,9 +1,8 @@
 import React, {useState, useEffect}  from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import {IonPage, IonHeader, IonTitle, IonContent, IonItemDivider,
-  IonList, IonItem, IonLabel, 
-  IonCard, IonCardHeader, IonToolbar, IonCardTitle, IonCardContent,
-  IonInput, IonButton, IonText, IonIcon, IonRow, IonCol
+  IonList, IonItem, IonLabel, IonToolbar, 
+  IonInput, IonButton, IonText, IonRow, IonCol
 } from '@ionic/react';
 import PageFooter from '../../components/PageFooter';
 import PageHeader from '../../components/PageHeader';
