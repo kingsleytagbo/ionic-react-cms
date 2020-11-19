@@ -1,5 +1,5 @@
+import React, {useContext}  from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import React  from 'react';
 import LoginLayout from '../components/LoginLayout';
 import PageFooter from '../components/PageFooter';
 import PageHeader from '../components/PageHeader';
@@ -7,7 +7,7 @@ import './Home.css';
 
 
 const Login: React.FC = () => {
-  
+
   return (
     <IonPage>
 

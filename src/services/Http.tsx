@@ -1,7 +1,7 @@
 import User from '../models/User';
 const API_URL = 'https://nodejsappapi.herokuapp.com';
 
-export const login = (username: string, password: string, useApi: boolean = true) => {
+export const loginUser = (username: string, password: string, useApi: boolean = true) => {
   if (useApi) {
     if ((username && username !== '') && (password && password !== '')) {
       const body = {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import {
   IonList, IonItem, IonLabel, 
@@ -6,11 +6,16 @@ import {
   IonInput, IonButton, IonText, IonIcon, IonRow, IonCol
 } from '@ionic/react';
 import './HomeContainer.css';
-import { login } from '../services/Http';
+import { loginUser } from '../services/Http';
+import { store } from '../state/store';
 
 interface ContainerProps { }
 
 const LoginLayout: React.FC<ContainerProps> = () => {
+  const globalState = useContext(store);
+  const { state, dispatch } = globalState;
+  const logout = () => dispatch({ type: "LOGOUT" });
+  const login = () => dispatch({ type: "LOGIN" });
   const history = useHistory();
   const [values, setValues] = useState({ username: '', password: '' });
   const [validation, setValidation] = useState({ username: false, password: false });
@@ -40,11 +45,15 @@ const LoginLayout: React.FC<ContainerProps> = () => {
 
   const navigateLogin = () => {
     const path = 'users';
-    const response = login(values.username, values.password);
+    const response = loginUser(values.username, values.password);
     response.then((result) => {
       if(result.authenticated){
-        console.log({ "Login Result": result.auth_token });
+        //console.log({ "Login Result": result.auth_token });
+        login();
         history.push(path);
+      }
+      else{
+        logout();
       }
     })
     .catch((err) => console.log('Login Error:', err.message));
@@ -69,7 +78,7 @@ const LoginLayout: React.FC<ContainerProps> = () => {
                   <IonCol size-xs="12">
                     <h1 className="IonTextCapitalize IonTextCenter">
                       <IonIcon name="apps"></IonIcon>
-                  Login
+                      {state.isAuth ? "Logout" : "Login"}
                 </h1>
                   </IonCol>
                 </IonRow>

@@ -1,7 +1,8 @@
-import React, { useState }  from 'react';
+import React, { useState, useContext }  from 'react';
 import { useHistory } from 'react-router-dom';
 import { IonHeader, IonTitle, IonToolbar, IonButtons, IonButton, IonIcon } from '@ionic/react';
 import Toast from '../components/utilities/Toast';
+import { store } from '../state/store';
 
 interface ContainerProps { authenticated:string }
 type props = {
@@ -9,10 +10,13 @@ type props = {
     handleLogout: any;
   }
 const PageHeader: React.FC<props> = ({ ...props }) => {
-    // const authenticated = props.authenticated;
-    // const handleLogout = props.handleLogout;
+    const history = useHistory();
+    const globalState = useContext(store);
+    const { state, dispatch } = globalState;
+    const logout = () => dispatch({ type: "LOGOUT" });
+    const login = () => dispatch({ type: "LOGIN" });
     const [authenticated, setKey] = useState(false);
-    const [openToast, showToast] = useState(false); 
+    const [openToast, showToast] = useState(false);
 
     const createToast = (message:string) => {
         return (
@@ -25,19 +29,19 @@ const PageHeader: React.FC<props> = ({ ...props }) => {
             />);
     }
 
-    const handleLogout = () => {
-      const authenticated = false;
-      setKey(authenticated);
-      console.log({'logout ...' : authenticated });
-    }
-  
-
-    const history = useHistory();
     const navigateLogin = () =>{ 
         const path = `login`; 
         history.push(path);
-        console.log({ 'login ...': authenticated });
+        //console.log({ 'login ...': authenticated });
     }
+
+    const handleLogout = () => {
+      //const authenticated = false;
+      //setKey(authenticated);
+      logout();
+      navigateLogin();
+    }
+
     
   return (
 <IonHeader className="ion-text-center">
@@ -48,13 +52,13 @@ const PageHeader: React.FC<props> = ({ ...props }) => {
     </IonTitle>
     <IonButtons slot="primary">
     
-        {authenticated &&
+        {state.isAuth &&
                       <IonButton onClick={handleLogout}>
                           <IonIcon slot="start" name="lock-closed"></IonIcon>
                           <span>Logout </span>
                       </IonButton>
                   }
-        {!authenticated &&
+        {!state.isAuth &&
                       <IonButton onClick={navigateLogin}>
                           <IonIcon slot="start" name="log-out"></IonIcon>
                           <span>Login</span>

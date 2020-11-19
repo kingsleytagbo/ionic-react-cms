@@ -28,18 +28,19 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 
 const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <IonRouterOutlet>
-        <Route path="/home" component={Home} exact={true} />
-        <Route path="/login" component={Login} exact={true} />
-        <Route path="/users" component={UsersHome} exact={true} />
-        <Route path="/users/adduser" component={AddUser} exact={true} />
-        <Route path="/users/edituser" component={EditUser} exact={true} />
-        <Route exact path="/" render={() => <Redirect to="/home" />} />
-      </IonRouterOutlet>
-    </IonReactRouter>
-  </IonApp>
+
+    <IonApp>
+      <IonReactRouter>
+        <IonRouterOutlet>
+          <Route path="/home" component={Home} exact={true} />
+          <Route path="/login" component={Login} exact={true} />
+          <Route path="/users" component={UsersHome} exact={true} />
+          <Route path="/users/adduser" component={AddUser} exact={true} />
+          <Route path="/users/edituser" component={EditUser} exact={true} />
+          <Route exact path="/" render={() => <Redirect to="/home" />} />
+        </IonRouterOutlet>
+      </IonReactRouter>
+    </IonApp>
 );
 
 export default App;
