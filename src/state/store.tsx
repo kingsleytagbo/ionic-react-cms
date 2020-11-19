@@ -1,21 +1,20 @@
 // store.js
-import React, {createContext, useReducer} from 'react';
+// https://blog.logrocket.com/use-hooks-and-context-not-react-and-redux/
+// https://stackoverflow.com/questions/54577865/react-createcontext-issue-in-typescript
+import React, {createContext, useReducer, Dispatch} from 'react';
+import { Actions, initialState, IState, reducer } from "./reducer";
 
-const initialState = {};
-const store = createContext(initialState);
+interface IContextProps {
+    state: IState;
+    dispatch: Dispatch<Actions>;
+  }
+
+const store = createContext({} as IContextProps);
 const { Provider } = store;
 
 const StateProvider = ( { children }:any ) => {
-  const [state, dispatch] = useReducer((state:any, action:any) => {
-    switch(action.type) {
-      case 'authentication':
-        const newState = {}; // do something with the action
-        return newState;
-      default:
-        throw new Error();
-    };
-  }, initialState);
-
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const value = { state, dispatch };
   return <Provider value={{ state, dispatch }}>{children}</Provider>;
 };
 
