@@ -5,10 +5,12 @@ export interface IState {
   
   interface ILogout {
     type: "LOGOUT";
+    payload: any;
   }
   
   interface ILogin {
     type: "LOGIN";
+    payload: any;
   }
   
   export type Actions = ILogin | ILogout;
@@ -19,11 +21,12 @@ export interface IState {
   };
   
   export const reducer = (state: IState, action: Actions) => {
+    console.log({state:state, action: action})
     switch (action.type) {
       case "LOGOUT":
-        return { ...state, isAuth: false, user: "" };
+        return { ...state, isAuth: false, user: action.payload };
       case "LOGIN":
-        return { ...state, isAuth: true, user: "" };
+        return { ...state, isAuth: true, user: action.payload };
     }
   };
   

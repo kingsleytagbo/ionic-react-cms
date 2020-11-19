@@ -15,11 +15,11 @@ const UsersHome: React.FC = () => {
   const loadUsers = async () => {
     const users = await getUsers() || Array<User>();
     setUsers(users);
-    console.log({ users });
+    // console.log({ users });
   };
 
   useEffect(() => {
-    console.log({ "useEffect": loadUsers })
+    // console.log({ "useEffect": loadUsers })
     loadUsers();
   }, [history.location.state]);
 
@@ -30,7 +30,7 @@ const UsersHome: React.FC = () => {
       pathname: '/users/edituser',
       state: { user: user }
     })
-    console.log({ name: name, value: user });
+    // console.log({ name: name, value: user });
   }
 
   const navigateAddUser = () => {

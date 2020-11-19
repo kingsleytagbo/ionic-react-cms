@@ -13,8 +13,9 @@ const PageHeader: React.FC<props> = ({ ...props }) => {
     const history = useHistory();
     const globalState = useContext(store);
     const { state, dispatch } = globalState;
-    const logout = () => dispatch({ type: "LOGOUT" });
-    const login = () => dispatch({ type: "LOGIN" });
+    console.log({state: state});
+    const logout = (user:any) => dispatch({ type: "LOGOUT", payload: user });
+    const login = (user:any) => dispatch({ type: "LOGIN", payload: user });
     const [authenticated, setKey] = useState(false);
     const [openToast, showToast] = useState(false);
 
@@ -38,7 +39,7 @@ const PageHeader: React.FC<props> = ({ ...props }) => {
     const handleLogout = () => {
       //const authenticated = false;
       //setKey(authenticated);
-      logout();
+      logout(null); //replace with the current user from storage
       navigateLogin();
     }
 

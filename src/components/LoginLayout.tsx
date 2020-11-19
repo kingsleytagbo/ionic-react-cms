@@ -14,8 +14,8 @@ interface ContainerProps { }
 const LoginLayout: React.FC<ContainerProps> = () => {
   const globalState = useContext(store);
   const { state, dispatch } = globalState;
-  const logout = () => dispatch({ type: "LOGOUT" });
-  const login = () => dispatch({ type: "LOGIN" });
+  const logout = (user:any) => dispatch({ type: "LOGOUT", payload:user});
+  const login = (user:any) => dispatch({ type: "LOGIN" , payload:user});
   const history = useHistory();
   const [values, setValues] = useState({ username: '', password: '' });
   const [validation, setValidation] = useState({ username: false, password: false });
@@ -49,11 +49,11 @@ const LoginLayout: React.FC<ContainerProps> = () => {
     response.then((result) => {
       if(result.authenticated){
         //console.log({ "Login Result": result.auth_token });
-        login();
+        login(values);
         history.push(path);
       }
       else{
-        logout();
+        logout(values);
       }
     })
     .catch((err) => console.log('Login Error:', err.message));
